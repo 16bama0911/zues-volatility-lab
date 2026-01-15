@@ -97,6 +97,19 @@ The combined forensic evidence confirms Zeus Trojan activity:
 - Injected executable code residing solely in memory
 - No reliance on disk-based artifacts
 
+## MITRE ATT&CK Mapping
+
+The following MITRE ATT&CK techniques were observed during analysis:
+
+- **T1055 - Process Injection**
+  Malicious executable code was injected into the address space of `svchost.exe`
+
+- **T1057 - Process Discovery Evasion**
+  The process `VMip.exe` was hidden from standard enumeration methods and only visible through memory scanning
+
+- **T1071.001 - Web-based Command and Control**
+  The infected system communicated with an external server over HTTP for command-and-control
+
 This case demonstrates how advanced malware can evade traditional detection and highlights the importance of memory forensics in incident response.
 
 ## Key Indicators of Compromise (IOCs)
