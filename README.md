@@ -79,7 +79,7 @@ Memory injection analysis was performed using `malfind`.
 
 <img width="902" height="802" alt="Ubuntu 64-bit--Desktop-2026-01-13-23-38-28" src="https://github.com/user-attachments/assets/c459cf6e-5d1a-47c5-965c-fdfdf5972d8f" />
 
-*An in-memory PE header (MZ) was detected, indicating a loaded executable payload--Malware loaded an executable directly into RAM instead of writing it to disk--Executable code was discovered running inside another program’s memory, showing that malware had secretly injected itself into a legitimate process.*
+*Injected executable memory identified -- The presence of an `MZ` (`4d 5a`) PE header inside a private executable memory region of `svchost.exe` indicates that malicious executable code was injected directly into the process*
 
 #### Key Findings
 - Private `PAGE_EXECUTE_READWRITE` memory regions were identified within `svchost.exe`
