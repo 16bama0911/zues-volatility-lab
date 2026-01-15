@@ -40,13 +40,13 @@ Prepare a controlled forensic environment and securely handle the memory evidenc
 
 - *Initial forensic workspace created to separate evidence, analysis outputs, screenshots, and notes to maintain investigation integrity*
 
-- *Folders were created to keep evidence, analysis results, and screenshots organized so nothing important gets mixed up or overwritten*
+  - *Folders were created to keep evidence, analysis results, and screenshots organized so nothing important gets mixed up or overwritten*
 
 <img width="953" height="130" alt="Ubuntu 64-bit--Desktop-2026-01-13-01-32-09" src="https://github.com/user-attachments/assets/b04cf276-d0ad-4530-a9bb-a46818f5cb2f" />
 
 - *Memory image `zeus.vmem` successfully copied into the evidence directory for forensic analysis*
 
-- *The captured memory file from the infected computer was copied into the lab so it could be analyzed safely without altering the original evidence*
+  - *The captured memory file from the infected computer was copied into the lab so it could be analyzed safely without altering the original evidence*
 
 #### Conclusion
 Ensured investigation was conducted in an organized manner while preserving the integrity of the original image.
@@ -58,7 +58,7 @@ An initial process analysis was performed to identify anomalous behavior.
 
 - *Process parent–child relationships visualized to identify abnormal execution chains and suspicious process ancestry*
 
-- *A visual map showing which programs started other programs, helping identify suspicious relationships between processes*
+  - *A visual map showing which programs started other programs, helping identify suspicious relationships between processes*
 
 #### Key Findings
 - A hidden process (`VMip.exe`, PID 1944) was identified using `psxview`
@@ -69,7 +69,7 @@ An initial process analysis was performed to identify anomalous behavior.
 
 - *Cross-view process analysis reveals a hidden process not visible through standard enumeration techniques, indicating stealthy malware behavior:`VMip.exe`*
 
-- *A comparison of multiple process lists revealed a program that was present in memory but hidden from normal system views*
+  - *A comparison of multiple process lists revealed a program that was present in memory but hidden from normal system views*
 
 #### Conclusion
 The presence of a hidden process strongly suggested malware activity and evasion techniques.
@@ -81,7 +81,7 @@ Network artifacts were identified using memory-based scanning.
 
 - *Outbound network connections identified, indicating HTTP-based communication with a suspected Zeus command-and-control server*
 
-- *The system was found communicating with an external internet address, suggesting it was contacting a remote control server*
+  - *The system was found communicating with an external internet address, suggesting it was contacting a remote control server*
 
 #### Key Findings
 - Outbound HTTP connections to an external IP address (`193.104.41.75`) were detected
@@ -101,7 +101,7 @@ Memory injection analysis was performed using `malfind`.
 
 - *Injected executable memory identified*
 
-- *The presence of an `MZ` (`4d 5a`) PE header inside a private executable memory region of `svchost.exe` indicates that malicious executable code was injected directly into the process*
+  - *The presence of an `MZ` (`4d 5a`) PE header inside a private executable memory region of `svchost.exe` indicates that malicious executable code was injected directly into the process*
 
 #### Key Findings
 - Private `PAGE_EXECUTE_READWRITE` memory regions were identified within `svchost.exe`
