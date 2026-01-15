@@ -45,9 +45,11 @@ An initial process analysis was performed to identify anomalous behavior.
 
 <img width="1215" height="727" alt="Ubuntu 64-bit--Desktop-2026-01-13-21-52-59" src="https://github.com/user-attachments/assets/eac61ccf-3d44-49e2-9e93-d888b46b10f6" />
 
-*Active processes enumerated from the memory image to establish a baseline view of system execution.*
+*Active processes enumerated from the memory image to establish a baseline view of system execution*
 
 <img width="1217" height="663" alt="Ubuntu 64-bit--Desktop-2026-01-13-21-56-37" src="https://github.com/user-attachments/assets/3c2a2022-97fe-416f-8034-c4b2eb41ca14" />
+
+*Process parent–child relationships visualized to identify abnormal execution chains and suspicious process ancestry*
 
 #### Key Findings
 - A hidden process (`VMip.exe`, PID 1944) was identified using `psxview`
