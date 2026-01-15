@@ -31,10 +31,12 @@ The investigation demonstrates how memory analysis can uncover advanced malware 
 - Generated and recorded SHA256 hash to preserve forensic integrity
 
 <img width="814" height="441" alt="Ubuntu 64-bit--Desktop-2026-01-12-16-01-06 - Copy" src="https://github.com/user-attachments/assets/9e7c3d9d-70e7-410e-99fe-907c99e20dcb" />
+
 *Initial forensic workspace created to separate evidence, analysis outputs, screenshots, and notes to maintain investigation integrity.*
 
-<img width="1035" height="94" alt="Ubuntu 64-bit--Desktop-2026-01-13-23-42-49" src="https://github.com/user-attachments/assets/ddb2bada-5868-47c2-bbd7-6e0de44beaa2" />
-*
+<img width="953" height="130" alt="Ubuntu 64-bit--Desktop-2026-01-13-01-32-09" src="https://github.com/user-attachments/assets/b04cf276-d0ad-4530-a9bb-a46818f5cb2f" />
+
+
 
 ### Part B -- Process Triage
 An initial process analysis was performed to identify anomalous behavior.
