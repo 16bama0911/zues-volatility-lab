@@ -42,6 +42,7 @@ Prepare a controlled forensic environment and securely handle the memory evidenc
 
 *Folders were created to keep evidence, analysis results, and screenshots organized so nothing important gets mixed up or overwritten*
 
+
 <img width="953" height="130" alt="Ubuntu 64-bit--Desktop-2026-01-13-01-32-09" src="https://github.com/user-attachments/assets/b04cf276-d0ad-4530-a9bb-a46818f5cb2f" />
 
 *Memory image `zeus.vmem` successfully copied into the evidence directory for forensic analysis*
