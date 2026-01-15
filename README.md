@@ -116,3 +116,12 @@ This case demonstrates how advanced malware can evade traditional detection and 
 ## Notes
 This analysis was conducted on an offline memory image in a controlled lab environment for educational purposes.
 
+## Command Reference
+
+The following Volatility commands were used during analysis:
+
+- imageinfo - Identify OS and profile
+- pstree - Analyze process hierarchy
+- psxview - Identify network connections
+- malfind - Detect injected executable memory
+
