@@ -24,7 +24,7 @@ The investigation demonstrates how memory analysis can uncover advanced malware 
 ## Evidence
 - Memory Image: `zeus.vmem` (VMware memory dump)
 - Acquisition Method: Provided memory image (offline forensic analysis)
-- Integrity Verification: SHA256 hashing performed before and after analysis
+- Integrity Verification: SHA-256 hashing performed before and after analysis
 
 ## Methodology
 
