@@ -1,10 +1,13 @@
-# Zeus Trojan -- Memory Forensics with Volatility
+# Zeus Trojan Memory Forensics with Volatility
+*Analysis of an infected Windows XP memory image using Volatility and Docker*
+
 ## Overview
 This project documents a memory forensics investigation of a Windows XP system infected with the Zeus Trojan, conducted using the Volatility Framework on an Ubuntu analysis workstation. The analysis focuses on identifying hidden processes, injected code, and command-and-control (C2) behavior that evades traditional disk-based detection.
 
 The investigation demonstrates how memory analysis can uncover advanced malware techniques such as process hiding, process injection, and legitimate process abuse.
 
-## Enviroment
+## Environment
+
 ### Analysis Host
 - Ubuntu Linux (VMware Workstation)
 - Docker (for Volatility 2 compatibility)
@@ -13,7 +16,7 @@ The investigation demonstrates how memory analysis can uncover advanced malware 
 - Windows XP (memory image)
   
 ### Tools
-- Volatility Framework 2 (via Docker)
+- Volatility Framework 2 (via Docker; used to run Volatility 2.6.1 because Python2 is not available on modern package managers)
 - Volatility Framework 3 (initial testing)
 - VMware Workstation
 - SHA256 hashing utilities
@@ -24,28 +27,35 @@ The investigation demonstrates how memory analysis can uncover advanced malware 
 - Integrity Verification: SHA256 hashing performed before and after analysis
 
 ## Methodology
-### Part A -- Enviroment Setup & Evidence Handling
+
+### Part A -- Environment Setup & Evidence Handling
+Prepare a controlled forensic environment and securely handle the memory evidence before analysis.
+
 - Configured Ubuntu analysis VM
 - Created a structured workspace for evidence, notes, and outputs
 - Copied memory image into a controlled analysis directory
-- Generated and recorded SHA256 hash to preserve forensic integrity
+- Generated and recorded SHA-256 hash to preserve forensic integrity
 
 <img width="814" height="441" alt="Ubuntu 64-bit--Desktop-2026-01-12-16-01-06 - Copy" src="https://github.com/user-attachments/assets/9e7c3d9d-70e7-410e-99fe-907c99e20dcb" />
 
-*Initial forensic workspace created to separate evidence, analysis outputs, screenshots, and notes to maintain investigation integrity--Folders were created to keep evidence, analysis results, and screenshots organized so nothing important gets mixed up or overwritten*
+*Initial forensic workspace created to separate evidence, analysis outputs, screenshots, and notes to maintain investigation integrity*
+*Folders were created to keep evidence, analysis results, and screenshots organized so nothing important gets mixed up or overwritten*
 
 <img width="953" height="130" alt="Ubuntu 64-bit--Desktop-2026-01-13-01-32-09" src="https://github.com/user-attachments/assets/b04cf276-d0ad-4530-a9bb-a46818f5cb2f" />
 
-*Memory image `zeus.vmem` successfully copied into the evidence directory for forensic analysis--The captured memory file from the infected computer was copied into the lab so it could be analyzed safely without altering the original evidence*
+*Memory image `zeus.vmem` successfully copied into the evidence directory for forensic analysis*
+*The captured memory file from the infected computer was copied into the lab so it could be analyzed safely without altering the original evidence*
 
-
+#### Conclusion
+Ensured investigation was conducted in an organized manner while preserving the integrity of the original image.
 
 ### Part B -- Process Triage
 An initial process analysis was performed to identify anomalous behavior.
 
 <img width="1217" height="663" alt="Ubuntu 64-bit--Desktop-2026-01-13-21-56-37" src="https://github.com/user-attachments/assets/3c2a2022-97fe-416f-8034-c4b2eb41ca14" />
 
-*Process parent–child relationships visualized to identify abnormal execution chains and suspicious process ancestry--A visual map showing which programs started other programs, helping identify suspicious relationships between processes*
+*Process parent–child relationships visualized to identify abnormal execution chains and suspicious process ancestry*
+*A visual map showing which programs started other programs, helping identify suspicious relationships between processes*
 
 #### Key Findings
 - A hidden process (`VMip.exe`, PID 1944) was identified using `psxview`
@@ -54,17 +64,19 @@ An initial process analysis was performed to identify anomalous behavior.
 
 <img width="1216" height="688" alt="Ubuntu 64-bit--Desktop-2026-01-13-22-00-11" src="https://github.com/user-attachments/assets/44f493dd-a4c7-4534-9d1e-b5cbe51186a0" />
 
-*Cross-view process analysis reveals a hidden process not visible through standard enumeration techniques, indicating stealthy malware behavior:`VMip.exe`--A comparison of multiple process lists revealed a program that was present in memory but hidden from normal system views*
+*Cross-view process analysis reveals a hidden process not visible through standard enumeration techniques, indicating stealthy malware behavior:`VMip.exe`*
+*A comparison of multiple process lists revealed a program that was present in memory but hidden from normal system views*
 
 #### Conclusion
-- The presence of a hidden process strongly suggested malware activity and evasion techniques.
+The presence of a hidden process strongly suggested malware activity and evasion techniques.
 
 ### Part C -- Network & C2 Analysis
 Network artifacts were identified using memory-based scanning.
 
 <img width="1661" height="149" alt="Ubuntu 64-bit--Desktop-2026-01-13-22-19-39" src="https://github.com/user-attachments/assets/9eabb769-1460-47d0-ac9b-1e97b10f5c18" />
 
-*Outbound network connections identified, indicating HTTP-based communication with a suspected Zeus command-and-control server--The system was found communicating with an external internet address, suggesting it was contacting a remote control server*
+*Outbound network connections identified, indicating HTTP-based communication with a suspected Zeus command-and-control server*
+*The system was found communicating with an external internet address, suggesting it was contacting a remote control server*
 
 #### Key Findings
 - Outbound HTTP connections to an external IP address (`193.104.41.75`) were detected
@@ -74,18 +86,23 @@ Network artifacts were identified using memory-based scanning.
 - Zeus commonly injects into legitimate processes such as `svchost.exe` to proxy C2 communication
 - This behavior aligns with known Zeus Trojan architecture
 
+#### Conclusion
+Observed outbound connections provided strong evidence of active command-and-control behavior associated with the Zeus Trojan.
+
 ### Part D -- Code Injection Analysis
 Memory injection analysis was performed using `malfind`.
 
 <img width="902" height="802" alt="Ubuntu 64-bit--Desktop-2026-01-13-23-38-28" src="https://github.com/user-attachments/assets/c459cf6e-5d1a-47c5-965c-fdfdf5972d8f" />
 
-*Injected executable memory identified -- The presence of an `MZ` (`4d 5a`) PE header inside a private executable memory region of `svchost.exe` indicates that malicious executable code was injected directly into the process*
+*Injected executable memory identified*
+*The presence of an `MZ` (`4d 5a`) PE header inside a private executable memory region of `svchost.exe` indicates that malicious executable code was injected directly into the process*
 
 #### Key Findings
 - Private `PAGE_EXECUTE_READWRITE` memory regions were identified within `svchost.exe`
 - An in-memory PE header (`MZ`) was detected, indicating a loaded executable payload
 - A trampoline-style JMP stub was observed, consistent with execution redirection
 - Attempts to dump injected regions did not produce output files, which can occur with small or protected injected regions
+  
 #### Conclusion
 - The presence of injected executable memory confirms process injection, a hallmark of Zeus infections
 
@@ -122,7 +139,7 @@ This case demonstrates how advanced malware can evade traditional detection and 
 - Memory forensics using Volatility
 - Process hiding and injection detection
 - Network C2 correlation
-- Evidence integrity verification (SHA256)
+- Evidence integrity verification (SHA-256)
 - Docker-based forensic tooling
 - DFIR documentation and reporting
 
