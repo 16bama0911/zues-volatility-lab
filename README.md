@@ -32,6 +32,7 @@ The investigation demonstrates how memory analysis can uncover advanced malware 
 
 <img width="814" height="441" alt="Ubuntu 64-bit--Desktop-2026-01-12-16-01-06 - Copy" src="https://github.com/user-attachments/assets/9e7c3d9d-70e7-410e-99fe-907c99e20dcb" />
 
+
 <img width="1035" height="94" alt="Ubuntu 64-bit--Desktop-2026-01-13-23-42-49" src="https://github.com/user-attachments/assets/ddb2bada-5868-47c2-bbd7-6e0de44beaa2" />
 
 
