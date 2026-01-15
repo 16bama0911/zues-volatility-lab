@@ -54,6 +54,8 @@ An initial process analysis was performed to identify anomalous behavior.
 
 <img width="1216" height="688" alt="Ubuntu 64-bit--Desktop-2026-01-13-22-00-11" src="https://github.com/user-attachments/assets/44f493dd-a4c7-4534-9d1e-b5cbe51186a0" />
 
+*Cross-view process analysis reveals a hidden process not visible through standard enumeration techniques, indicating stealthy malware behavior*
+
 #### Conclusion
 - The presence of a hidden process strongly suggested malware activity and evasion techniques.
 
