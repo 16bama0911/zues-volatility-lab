@@ -32,11 +32,11 @@ The investigation demonstrates how memory analysis can uncover advanced malware 
 
 <img width="814" height="441" alt="Ubuntu 64-bit--Desktop-2026-01-12-16-01-06 - Copy" src="https://github.com/user-attachments/assets/9e7c3d9d-70e7-410e-99fe-907c99e20dcb" />
 
-*Initial forensic workspace created to separate evidence, analysis outputs, screenshots, and notes to maintain investigation integrity*
+*Initial forensic workspace created to separate evidence, analysis outputs, screenshots, and notes to maintain investigation integrity--Folders were created to keep evidence, analysis results, and screenshots organized so nothing important gets mixed up or overwritten*
 
 <img width="953" height="130" alt="Ubuntu 64-bit--Desktop-2026-01-13-01-32-09" src="https://github.com/user-attachments/assets/b04cf276-d0ad-4530-a9bb-a46818f5cb2f" />
 
-*Memory image `zeus.vmem` successfully copied into the evidence directory for forensic analysis*
+*Memory image `zeus.vmem` successfully copied into the evidence directory for forensic analysis--The captured memory file from the infected computer was copied into the lab so it could be analyzed safely without altering the original evidence*
 
 
 
@@ -45,7 +45,7 @@ An initial process analysis was performed to identify anomalous behavior.
 
 <img width="1217" height="663" alt="Ubuntu 64-bit--Desktop-2026-01-13-21-56-37" src="https://github.com/user-attachments/assets/3c2a2022-97fe-416f-8034-c4b2eb41ca14" />
 
-*Process parent–child relationships visualized to identify abnormal execution chains and suspicious process ancestry*
+*Process parent–child relationships visualized to identify abnormal execution chains and suspicious process ancestry-A visual map showing which programs started other programs, helping identify suspicious relationships between processes*
 
 #### Key Findings
 - A hidden process (`VMip.exe`, PID 1944) was identified using `psxview`
@@ -54,7 +54,7 @@ An initial process analysis was performed to identify anomalous behavior.
 
 <img width="1216" height="688" alt="Ubuntu 64-bit--Desktop-2026-01-13-22-00-11" src="https://github.com/user-attachments/assets/44f493dd-a4c7-4534-9d1e-b5cbe51186a0" />
 
-*Cross-view process analysis reveals a hidden process not visible through standard enumeration techniques, indicating stealthy malware behavior--`VMip.exe`*
+*Cross-view process analysis reveals a hidden process not visible through standard enumeration techniques, indicating stealthy malware behavior:`VMip.exe`--A comparison of multiple process lists revealed a program that was present in memory but hidden from normal system views*
 
 #### Conclusion
 - The presence of a hidden process strongly suggested malware activity and evasion techniques.
@@ -64,7 +64,7 @@ Network artifacts were identified using memory-based scanning.
 
 <img width="1661" height="149" alt="Ubuntu 64-bit--Desktop-2026-01-13-22-19-39" src="https://github.com/user-attachments/assets/9eabb769-1460-47d0-ac9b-1e97b10f5c18" />
 
-*Outbound network connections identified, indicating HTTP-based communication with a suspected Zeus command-and-control server*
+*Outbound network connections identified, indicating HTTP-based communication with a suspected Zeus command-and-control server--The system was found communicating with an external internet address, suggesting it was contacting a remote control server*
 
 #### Key Findings
 - Outbound HTTP connections to an external IP address (`193.104.41.75`) were detected
@@ -79,7 +79,7 @@ Memory injection analysis was performed using `malfind`.
 
 <img width="902" height="802" alt="Ubuntu 64-bit--Desktop-2026-01-13-23-38-28" src="https://github.com/user-attachments/assets/c459cf6e-5d1a-47c5-965c-fdfdf5972d8f" />
 
-*An in-memory PE header (MZ) was detected, indicating a loaded executable payload--Malware loaded an executable directly into RAM instead of writing it to disk*
+*An in-memory PE header (MZ) was detected, indicating a loaded executable payload--Malware loaded an executable directly into RAM instead of writing it to disk--Executable code was discovered running inside another program’s memory, showing that malware had secretly injected itself into a legitimate process.*
 
 #### Key Findings
 - Private `PAGE_EXECUTE_READWRITE` memory regions were identified within `svchost.exe`
