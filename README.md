@@ -19,7 +19,7 @@ The investigation demonstrates how memory analysis can uncover advanced malware 
 - Volatility Framework 2 (via Docker; used to run Volatility 2.6.1 because Python2 is not available on modern package managers)
 - Volatility Framework 3 (initial testing)
 - VMware Workstation
-- SHA256 hashing utilities
+- SHA-256 hashing utilities
   
 ## Evidence
 - Memory Image: `zeus.vmem` (VMware memory dump)
