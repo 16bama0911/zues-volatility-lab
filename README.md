@@ -64,6 +64,8 @@ Network artifacts were identified using memory-based scanning.
 
 <img width="1661" height="149" alt="Ubuntu 64-bit--Desktop-2026-01-13-22-19-39" src="https://github.com/user-attachments/assets/9eabb769-1460-47d0-ac9b-1e97b10f5c18" />
 
+*Outbound network connections identified, indicating HTTP-based communication with a suspected Zeus command-and-control server*
+
 #### Key Findings
 - Outbound HTTP connections to an external IP address (`193.104.41.75`) were detected
 - Network traffic originated from `svchost.exe` (PID 856)
