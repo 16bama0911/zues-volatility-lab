@@ -53,6 +53,9 @@ An initial process analysis was performed to identify anomalous behavior.
 
 ### Part C -- Network & C2 Analysis
 Network artifacts were identified using memory-based scanning.
+
+<img width="1661" height="149" alt="Ubuntu 64-bit--Desktop-2026-01-13-22-19-39" src="https://github.com/user-attachments/assets/9eabb769-1460-47d0-ac9b-1e97b10f5c18" />
+
 #### Key Findings
 - Outbound HTTP connections to an external IP address (`193.104.41.75`) were detected
 - Network traffic originated from `svchost.exe` (PID 856)
@@ -63,6 +66,9 @@ Network artifacts were identified using memory-based scanning.
 
 ### Part D -- Code Injection Analysis
 Memory injection analysis was performed using `malfind`.
+
+<img width="902" height="802" alt="Ubuntu 64-bit--Desktop-2026-01-13-23-38-28" src="https://github.com/user-attachments/assets/c459cf6e-5d1a-47c5-965c-fdfdf5972d8f" />
+
 #### Key Findings
 - Private `PAGE_EXECUTE_READWRITE` memory regions were identified within `svchost.exe`
 - An in-memory PE header (`MZ`) was detected, indicating a loaded executable payload
